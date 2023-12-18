@@ -2,9 +2,11 @@ import {Router} from "express";
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
+import dotenv from "dotenv";
+dotenv.config()
 const router = Router()
 
+const SECRET_KEY = process.env.SECRET_KEY
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -21,7 +23,7 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ message: 'Authentication failed' });
         }
 
-        const token = jwt.sign({ userId: user._id, username: user.username, userType: user.type }, 'secret_key', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id, username: user.username, userType: user.type }, SECRET_KEY, { expiresIn: '1h' });
 
         res.status(200).json({ token });
     } catch (error) {
