@@ -3,7 +3,8 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv"
 import user from "./routes/user.js"
-import catalog from "./routes/catalog.js";
+
+import seller from "./routes/seller.js";
 
 dotenv.config()
 const app=  express()
@@ -16,7 +17,8 @@ mongoose.connect(MONGOURI)
 
 
 app.use("/api/auth", user);
-app.use("/api/seller", catalog);
+app.use("/api/seller", seller);
+
 
 app.listen(PORT,()=>{
     console.log("hello")
