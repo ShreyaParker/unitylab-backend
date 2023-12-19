@@ -9,8 +9,8 @@ const catalogSchema = new Schema({
     },
     products: [
         {
-            name: { type: String, required: true },
-            price: { type: Number, required: true }
+            type: Schema.Types.ObjectId,
+            ref: 'Product'
         },
     ],
 });
