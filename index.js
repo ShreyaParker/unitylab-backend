@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv"
 import user from "./routes/user.js"
 
+import buyer from "./routes/buyer.js";
 import seller from "./routes/seller.js";
 
 dotenv.config()
@@ -18,7 +19,7 @@ mongoose.connect(MONGOURI)
 
 app.use("/api/auth", user);
 app.use("/api/seller", seller);
-
+app.use("/api/buyer", buyer);
 
 app.listen(PORT,()=>{
     console.log("hello")
