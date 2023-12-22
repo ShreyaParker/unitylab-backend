@@ -2,6 +2,7 @@ import express from 'express';
 import { verifyToken } from '../middleware/auth.js';
 import Catalog from '../models/Catalog.js';
 import Product from '../models/Product.js';
+import Order from "../models/order.js";
 
 const router = express.Router();
 
@@ -46,6 +47,18 @@ router.post('/create-catalog', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+router.get("/orders",async(req, res)=>{
+    try {
+        const { userId } = req.user;
+
+        const orders = await Order.find({ seller: userId });
+
+        res.status(200).json({ orders });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
 
 export default router;
 

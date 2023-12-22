@@ -6,7 +6,7 @@ const userSchema = new Schema({
     type: { type: String, enum: ['buyer', 'seller'], required: true },
 })
 
-const User = model("user",userSchema)
+const User = model("users",userSchema)
 
 
 export default User
